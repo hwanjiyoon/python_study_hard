@@ -146,7 +146,7 @@ tuple_num4 = 0이라고 입력할 경우 생기는 문제는 무엇일까?
 # print(type(tuple_num6[2])) #collections의 element에 type() 함수를 적용하면
 #                            #element의 자료형이 반환됨
 #                            #즉, tuple_num6[2]는 3이라는 element를 가리키기 때문에
-#                            #type홤수 적용시 int의 자료형이 뜸
+#                            #type함수 적용시 int의 자료형이 뜸
 #
 
 # tuple_num7 = "hello. ", "nice to meet you. ", "my name is ", "yun jihwan. ", "I am ", "23 ", "years old."
