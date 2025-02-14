@@ -193,6 +193,8 @@ class Student:
         print(f"학생 이름 : {self.name} \n 학번 : {self.student_id} \n성적 : {self.grade}")
 
     def set_grade(self, grade):
+
+
 student1 = Student("김철수", 20250001, "A")
 student2 = Student("이영희", 20250002, "B")
-        student3 = Student("박민지", 20250003, "C")
+student3 = Student("박민지", 20250003, "C")
