@@ -141,18 +141,18 @@ del man
 인스턴스가 삭제되면 다음과 같은 메시지를 출력할 수 있도록 작성
 james is dead
 '''
-class Person:
-    def __init__(self, name):
-        self.name = name
-        print(f"{self.name} is born.")
-    def __del__(self):
-        print(f"{self.name} is dead.")
-
-man = Person("James")
-woman = Person("emily")
-
-del man
-print("프로그램이 종료되었습니다.")
+# class Person:
+#     def __init__(self, name):
+#         self.name = name
+#         print(f"{self.name} is born.")
+#     def __del__(self):
+#         print(f"{self.name} is dead.")
+#
+# man = Person("James")
+# woman = Person("emily")
+#
+# del man
+# print("프로그램이 종료되었습니다.")
 
 
 '''
@@ -182,19 +182,115 @@ student3 = Student("박민지", 20250003, "C")
 이후 student1 성적을 A+, 2는 A, 3는 B+로 성적 변경
 '''
 
-class Student:
+# class Student:
+#     #생성자
+#     def __init__(self, name, student_id, grade):
+#         self.name = name
+#         self.student_id = student_id
+#         self.grade = grade
+#     #객체의 인스턴스 변수 값을 출력해주는 메서드
+#     def print_profile(self):
+#         print(f"학생 이름 : {self.name} \n 학번 : {self.student_id} \n성적 : {self.grade}")
+#
+#     #이상의 코드는 콘솔에 찍히기만 할 뿐 연산이 불가능 call3()유형
+#     def get_grade(self):
+#         return self.grade
+#     #grade만 바꾸게 될 메서드 > set_info() : Book 클래스의 set_info()메서드 참조
+#
+#     def set_grade(self, grade):
+#         if grade not in ["A+", "A", "B+", "B", "C+", "C", "D+", "F"]:
+#             print("불가능한 점수 입력입니다.")
+#         self.grade = grade #Book클래스에서 set_info(self, title, author):
+# #객체 생성
+# student1 = Student("김철수", 20250001, "A")
+# student2 = Student("이영희", 20250002, "B")
+# student3 = Student("박민지", 20250003, "C")
+#
+# student1.print_profile()
+# student2.print_profile()
+# student3.print_profile()
+#
+# student1.set_grade("A+")
+# student2.set_grade("A")
+# student3.set_grade("B+")
+#
+# student1.print_profile()
+# student2.print_profile()
+# student3.print_profile()
 
-    def student_info(self, name, student_id, grade):
+#
+# student1.print_profile()
+# #방법1) 속성값을 직접 참조하여 변경
+# student1.grade = "A+"
+# student1.print_profile()
+# #방법2)
+# student1.set_grade("A+")
+# student1.print_profile()
+#
+# student1.set_grade("불가능한 점수")
+# student1.print_profile()
+#인스턴스 변수에 값을 대입할 때 제약을 걸기 위해 method를 경유하여 값을 대입하도록 권장
+
+#setter(call2()유형), getter(call3()유형) > 클래스로 돌아가서 해당 메서드 추가
+
+
+'''
+1. Setter / Getter
+1) Setter : 객체의 속성 값을 변경하는 메서드
+2) Getter : 객체의 속성 값을 조회하는 메서드
+
+3) 왜 사용하는가
+(1) 데이터 보호 및 무결성 유지 : 속성 값을 직접 변경하는 경우, 잘못됨 값이 입력될 가능성이 높음
+                             Setter를 사용하면 특정 조건을 만족하는 값만 속성에 대입 가능
+                             
+(2) 객체의 캡슐화 실현 : 객체 내부의 데이터를 외부에서 직접 수정하는 것을 방지
+                       대신 메서드를 통해서만 접근하도록 제한하여 보안성을 높임
+                       
+(3) 추후 유지 보수 및 확장성 용이 : Setter / Getter를 사용하면 특정 속성에 대한 로직을 쉽게 변경 가능
+                                예를 들어, 특정 속성을 설정할 때 추가적인 검증이 필요하면 Setter에서 처리 가능
+                                
+
+2. 클래스를 정의할 때 기본적으로 Setter / Getter를 타이핑하면서 형태를 배울 것
+1) Setter : call2() 유형
+2) Getter : call3() 유형
+'''
+
+# Setter > Getter 적용 예시
+
+class Person:
+
+    def __init__(self, name, age, address):
         self.name = name
-        self.student_id = student_id
-        self.grade = grade
+        self.age = age
+        self.address = address
 
-    def print_profile(self):
-        print(f"학생 이름 : {self.name} \n 학번 : {self.student_id} \n성적 : {self.grade}")
+    def set_name(self, name):
+        self.name = name
 
-    def set_grade(self, grade):
+    def get_name(self):
+        return self.name
+
+    def set_age(self, age):
+        self.age = age
+
+    def get_age(self):
+        if self.age > 0 or self.age < 200:
+            return self.age
+        else:
+            print("입력이 불가능합니다.")
+
+    def set_address(self, address):
+        self.address = address
+
+    def get_address(self):
+        return self.address
+
+    def print_person_info(self):
+        print(f"제 이름은 {self.name}입니다.\n나이는 {self.age}입니다.\n주소는 {self.address}입니다.")
+
+person1 = Person("윤지환", 202, "부산광역시 동래구")
+person1.print_person_info()
 
 
-student1 = Student("김철수", 20250001, "A")
-student2 = Student("이영희", 20250002, "B")
-student3 = Student("박민지", 20250003, "C")
+
+
